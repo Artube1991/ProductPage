@@ -1,38 +1,36 @@
 import { KeysBooksContext } from "../App";
-import { KnightsBooksContext } from "../App";
+// import { KnightsBooksContext } from "../App";
 import { useState, useContext, useEffect } from "react";
 
 
 const New = () => {
   const [keysBooks, setKeysBooks] = useContext(KeysBooksContext);
-  const [knightsBooks, setKnightBooks] = useContext(KnightsBooksContext);
+//   const [knightsBooks, setKnightsBooks] = useContext(KnightsBooksContext);
 
-//   const refresh = () => {
-//     setKeysBooks(keysBooks);
-//   };
+  const refresh = () => {
+    if (keysBooks < 0) {
+    setKeysBooks(0);
+    }
+  };
 
-//   useEffect(() => {
-//     refresh(); 
-//   }, [keysBooks]
-// )
+  useEffect(() => {
+    refresh(); 
+  }, [keysBooks]
+)
 
-    const changingAmount = (operation) => {
-        if (keysBooks > 0 || keysBooks === 0) {
-        if (operation === "minus") {
-            setKeysBooks(keysBooks - 1);
-            return keysBooks;
+const changingAmount = (operation) => {
+    console.log(keysBooks);
+    if (keysBooks > 0 || keysBooks === 0) {
+    if (operation === "minus") {
+        setKeysBooks(keysBooks - 1);
+        console.log(keysBooks);
+        return keysBooks;
         }
-        else if (operation === "plus") {
-            setKeysBooks(keysBooks + 1);
-            return keysBooks;
+    else if (operation === "plus") {
+        setKeysBooks(keysBooks + 1);
+        return keysBooks;
         }
-        }
-        else if (keysBooks < 0) {
-            setKeysBooks(0);
-            console.log("I cannot count negative numbers!");
-            console.log(keysBooks);
-            return keysBooks;
-        }
+    }
     };
 
     return(
