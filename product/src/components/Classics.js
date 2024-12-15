@@ -1,3 +1,6 @@
+import { KeysBooksContext } from "../App";
+import { KnightsBooksContext } from "../App";
+
 const Classics = () => {
     return(
     <>
@@ -8,7 +11,7 @@ const Classics = () => {
         <p className="product-info">Lorem ipsum</p>
         <p className="current-price">$4</p>
         <p className="discount-size">30%</p>
-        <p className="old-price">%6</p>
+        <p className="old-price">$6</p>
         <button className="button-minus">-</button>
         <p className="product-amount">0</p>
         <button className="button-plus">+</button>
