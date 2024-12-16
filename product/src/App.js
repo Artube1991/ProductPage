@@ -51,13 +51,13 @@ function App() {
 
   return (
     <>
-    <nav>
-    <p className="website-logo">KEYS / КЛЮЧИ </p>
-    <ul>
-      <li><Link to="/">NEW!</Link></li>
-      <li><Link to="/classic">Our Classics</Link></li>
-      <li><Link to="/contact">Contact</Link></li>
-      <li><Link to="/about">About</Link></li>
+    <nav className="nav-bar">
+    <div className="website-title">KEYS / КЛЮЧИ </div>
+    <ul className="menu">
+      <li className="menu-item"><Link to="/">NEW!</Link></li>
+      <li className="menu-item"><Link to="/classic">Our Classics</Link></li>
+      <li className="menu-item"><Link to="/contact">Contact</Link></li>
+      <li className="menu-item"><Link to="/about">About</Link></li>
     </ul>
     <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}></i>
     </nav>

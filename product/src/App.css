@@ -1,3 +1,28 @@
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+}
+
+.menu {
+  position: absolute;
+  right: 10%;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.menu-item {
+  list-style: none;
+  margin-right: 2%;
+}
+
+#cart-icon {
+  position: absolute;
+  right: 3%;
+  font-size: xx-large;
+}
+
 .cart {
   display: none;
 }
