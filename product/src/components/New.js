@@ -5,30 +5,29 @@ import { useState, useContext, useEffect } from "react";
 
 const New = () => {
   const [keysBooks, setKeysBooks] = useContext(KeysBooksContext);
+  const [keysBooksChosen, setKeysBooksChosen] = useState(0);
 //   const [knightsBooks, setKnightsBooks] = useContext(KnightsBooksContext);
 
   const refresh = () => {
-    if (keysBooks < 0) {
-    setKeysBooks(0);
+    if (keysBooksChosen < 0) {
+    setKeysBooksChosen(0);
     }
   };
 
   useEffect(() => {
     refresh(); 
-  }, [keysBooks]
+  }, [keysBooksChosen]
 )
 
 const changingAmount = (operation) => {
     console.log(keysBooks);
-    if (keysBooks > 0 || keysBooks === 0) {
+    if (keysBooksChosen >= 0) {
     if (operation === "minus") {
-        setKeysBooks(keysBooks - 1);
-        console.log(keysBooks);
-        return keysBooks;
+        setKeysBooksChosen(keysBooksChosen - 1);
+        console.log(keysBooksChosen);
         }
     else if (operation === "plus") {
-        setKeysBooks(keysBooks + 1);
-        return keysBooks;
+        setKeysBooksChosen(keysBooksChosen + 1);
         }
     }
     };
@@ -44,9 +43,9 @@ const changingAmount = (operation) => {
         <p className="discount-size">30%</p>
         <p className="old-price">$6</p>
         <button className="button-minus" onClick={(e) => changingAmount("minus")}>-</button>
-        <p className="product-amount">{keysBooks}</p>
+        <p className="product-amount">{keysBooksChosen}</p>
         <button className="button-plus" onClick={(e) => changingAmount("plus")}>+</button>
-        <button className="add-cart">Add to cart</button>
+        <button className="add-cart" onClick={(e) => setKeysBooks(keysBooks + keysBooksChosen)}>Add to cart</button>
     </div>
     </>)
 };
