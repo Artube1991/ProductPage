@@ -15,6 +15,10 @@ function App() {
   // const [keysAmount, setKeysAmount] = useState(0);
   // const [knightsAmount, setKnightsAmount] = useState(0);
   const [cartMessage, setCartMessage] = useState("Your cart is empty!");
+  const [cartIsVisible, setCartIsVisible] = useState(false);
+
+  const cart = document.querySelector(".cart");
+  const cartIcon = document.querySelector(".cart-icon");
 
   useEffect(() => {
     cartUpdate();
@@ -35,6 +39,15 @@ function App() {
     }
   };
 
+  const showCart = () => {
+    if (cartIsVisible === false) {
+      setCartIsVisible(true);
+      cart.setAttribute("style", "display: block");
+    } else if (cartIsVisible === true) {
+      setCartIsVisible(false);
+      cart.setAttribute("style", "display: none");
+    }
+  };
 
   return (
     <>
@@ -46,6 +59,7 @@ function App() {
       <li><Link to="/contact">Contact</Link></li>
       <li><Link to="/about">About</Link></li>
     </ul>
+    <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}></i>
     </nav>
     <KeysBooksContext.Provider value={[keysBooks, setKeysBooks]}>
     <KnightsBooksContext.Provider value={[knightsBooks, setKnightBooks]}>
