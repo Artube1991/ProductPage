@@ -26,3 +26,8 @@
 .cart {
   display: none;
 }
+
+.small-product-picture {
+  opacity: 0.4;
+  border-radius: 10%;
+}
