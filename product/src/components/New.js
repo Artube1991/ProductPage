@@ -17,18 +17,25 @@ const smallProductPicture = document.getElementsByClassName("small-product-pictu
 const [cartMessage, setCartMessage] = useState("");
 const cartMessageSingle = "Item successfully added!";
 const cartMessagePlural = "Items successfully added!";
+const [cartIsClicked, setCartIsClicked] = useState(false);
+
+useEffect(() => {
+  refresh();
+  channgingPicture();
+}, [keysBooksChosen, pictureType]
+);
+
+useEffect(() => {
+  addingToCart();
+}, [cartIsClicked]
+);
 
   const refresh = () => {
     if (keysBooksChosen < 0) {
     setKeysBooksChosen(0);
+    addingToCart();
     }
   };
-
-  useEffect(() => {
-    refresh();
-    channgingPicture(); 
-  }, [keysBooksChosen, pictureType]
-)
 
 const changingAmount = (operation) => {
     console.log(keysBooks);
@@ -43,7 +50,6 @@ const changingAmount = (operation) => {
     }
     };
 
-
 const channgingPicture = () => {
   for (let pic of smallProductPicture) {
     if (pic.getAttribute("src") === `./media/keys-${pictureType}.jpg`) {
@@ -55,13 +61,34 @@ const channgingPicture = () => {
   }
 };
 
-const addingToCart = () => {
+const changingCart = () => {
+  setCartIsClicked(true);
   setKeysBooks(keysBooks + keysBooksChosen);
-
   if (keysBooksChosen === 1) {
-  setTimeout(setCartMessage(cartMessageSingle), 3000); 
+    setCartMessage(cartMessageSingle);
   } else if (keysBooksChosen > 1) {
-    setTimeout(setCartMessage(cartMessagePlural), 3000);
+    setCartMessage(cartMessagePlural);
+  }
+}
+
+// const addingToCart = () => {
+//   if (keysBooksChosen === 1) {
+//   setCartMessage(cartMessageSingle);
+//   const timer = setTimeout(() => {setCartMessage(""); setCartIsClicked(false)}, 5000); 
+//   return () => clearTimeout(timer);
+//   } else if (keysBooksChosen > 1) {
+//     setCartMessage(cartMessagePlural);
+//     const timer = setTimeout(() => {setCartMessage(""); setCartIsClicked(false)}, 5000);
+//     return () => clearTimeout(timer);
+//   }
+// };
+
+const addingToCart = () => {
+  if (cartIsClicked === true) {
+  const timer = setTimeout(() => {setCartMessage(""); setCartIsClicked(false)}, 5000); 
+  return () => clearTimeout(timer);
+  } else {
+    return
   }
 };
 
@@ -70,10 +97,10 @@ const addingToCart = () => {
     <section className="product-carousel">CAROUSEL
     <img className="product-picture" src={picturePath} width="400" height="400"/>
     <div className="pictures-row">
-      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" onClick={(e) => setPictureType("main")}/>
-      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" onClick={(e) => setPictureType("overall")}/>
-      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" onClick={(e) => setPictureType("illustration")}/>
-      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" onClick={(e) => setPictureType("text")}/>
+      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" alt="Keys main picture" onClick={(e) => setPictureType("main")}/>
+      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" alt="Keys overall picture" onClick={(e) => setPictureType("overall")}/>
+      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" alt="Keys illutration picture" onClick={(e) => setPictureType("illustration")}/>
+      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" alt="Keys product picture" onClick={(e) => setPictureType("text")}/>
     </div>
     </section>
     <div className="product-info-box">
@@ -86,7 +113,7 @@ const addingToCart = () => {
         <button className="button-minus" onClick={(e) => changingAmount("minus")}>-</button>
         <p className="product-amount">{keysBooksChosen}</p>
         <button className="button-plus" onClick={(e) => changingAmount("plus")}>+</button>
-        <button className="add-cart" onClick={(e) => addingToCart()}>Add to cart</button>
+        <button className="add-cart" onClick={(e) => changingCart()}>Add to cart</button>
         <p>{cartMessage}</p>
     </div>
     </>)
