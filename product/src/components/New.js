@@ -14,6 +14,10 @@ const [pictureType, setPictureType] = useState("main");
 let picturePath = `./media/${book}-${pictureType}.jpg`;
 const smallProductPicture = document.getElementsByClassName("small-product-picture");
 
+const [cartMessage, setCartMessage] = useState("");
+const cartMessageSingle = "Item successfully added!";
+const cartMessagePlural = "Items successfully added!";
+
   const refresh = () => {
     if (keysBooksChosen < 0) {
     setKeysBooksChosen(0);
@@ -21,8 +25,9 @@ const smallProductPicture = document.getElementsByClassName("small-product-pictu
   };
 
   useEffect(() => {
-    refresh(); 
-  }, [keysBooksChosen]
+    refresh();
+    channgingPicture(); 
+  }, [keysBooksChosen, pictureType]
 )
 
 const changingAmount = (operation) => {
@@ -38,25 +43,37 @@ const changingAmount = (operation) => {
     }
     };
 
-const changingPicture = (type) => {
-  setPictureType(type);
+
+const channgingPicture = () => {
   for (let pic of smallProductPicture) {
-    if (pic.getAttribute("src") === `keys-${type}`) {
-      pic.setAttribute("style", "opacity: 1");
-      pic.setAttribute("style", "border: 3px solid yellow")
+    if (pic.getAttribute("src") === `./media/keys-${pictureType}.jpg`) {
+      pic.setAttribute("style", "border: 3px solid darkorange; opacity: 1");
+    }
+    else {
+      pic.setAttribute("style", "border: none; opacity: 0.45");
     }
   }
-}
+};
+
+const addingToCart = () => {
+  setKeysBooks(keysBooks + keysBooksChosen);
+
+  if (keysBooksChosen === 1) {
+  setTimeout(setCartMessage(cartMessageSingle), 3000); 
+  } else if (keysBooksChosen > 1) {
+    setTimeout(setCartMessage(cartMessagePlural), 3000);
+  }
+};
 
     return(
     <>
     <section className="product-carousel">CAROUSEL
     <img className="product-picture" src={picturePath} width="400" height="400"/>
     <div className="pictures-row">
-      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" onClick={(e) => changingPicture("main")}/>
-      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" onClick={(e) => changingPicture("overall")}/>
-      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" onClick={(e) => changingPicture("illustration")}/>
-      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" onClick={(e) => changingPicture("text")}/>
+      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" onClick={(e) => setPictureType("main")}/>
+      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" onClick={(e) => setPictureType("overall")}/>
+      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" onClick={(e) => setPictureType("illustration")}/>
+      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" onClick={(e) => setPictureType("text")}/>
     </div>
     </section>
     <div className="product-info-box">
@@ -69,7 +86,8 @@ const changingPicture = (type) => {
         <button className="button-minus" onClick={(e) => changingAmount("minus")}>-</button>
         <p className="product-amount">{keysBooksChosen}</p>
         <button className="button-plus" onClick={(e) => changingAmount("plus")}>+</button>
-        <button className="add-cart" onClick={(e) => setKeysBooks(keysBooks + keysBooksChosen)}>Add to cart</button>
+        <button className="add-cart" onClick={(e) => addingToCart()}>Add to cart</button>
+        <p>{cartMessage}</p>
     </div>
     </>)
 };
