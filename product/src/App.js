@@ -64,8 +64,8 @@ function App() {
     <KeysBooksContext.Provider value={[keysBooks, setKeysBooks]}>
     <KnightsBooksContext.Provider value={[knightsBooks, setKnightBooks]}>
     <Routes>      
-      <Route exact path="/" element={<New />}/>
-      <Route path="/classic" element={<Classics />} />
+      <Route exact path="/" element={<New book="keys" />}/>
+      <Route path="/classic" element={<Classics book="knigths" />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<About />} />
     </Routes>

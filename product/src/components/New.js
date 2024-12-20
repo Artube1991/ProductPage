@@ -3,16 +3,18 @@ import { KeysBooksContext } from "../App";
 import { useState, useContext, useEffect } from "react";
 
 
-const New = () => {
+const New = (props) => {
   const [keysBooks, setKeysBooks] = useContext(KeysBooksContext);
   const [keysBooksChosen, setKeysBooksChosen] = useState(0);
 //   const [knightsBooks, setKnightsBooks] = useContext(KnightsBooksContext);
 
-const book = "keys";
+const book = props.book;
 const [pictureType, setPictureType] = useState("main");
 
 let picturePath = `./media/${book}-${pictureType}.jpg`;
 const smallProductPicture = document.getElementsByClassName("small-product-picture");
+const pictureTypesAll = ["main", "overall", "illustration", "text"];
+const [picturePathCarousel, setPicturePathCarousel] = useState("");
 
 const [cartMessage, setCartMessage] = useState("");
 const cartMessageSingle = "Item successfully added!";
@@ -30,7 +32,7 @@ useEffect(() => {
 }, [cartIsClicked]
 );
 
-  const refresh = () => {
+const refresh = () => {
     if (keysBooksChosen < 0) {
     setKeysBooksChosen(0);
     addingToCart();
@@ -52,7 +54,7 @@ const changingAmount = (operation) => {
 
 const channgingPicture = () => {
   for (let pic of smallProductPicture) {
-    if (pic.getAttribute("src") === `./media/keys-${pictureType}.jpg`) {
+    if (pic.getAttribute("src") === `./media/${book}-${pictureType}.jpg`) {
       pic.setAttribute("style", "border: 3px solid darkorange; opacity: 1");
     }
     else {
@@ -60,6 +62,11 @@ const channgingPicture = () => {
     }
   }
 };
+
+const channgingPictureCarousel = () => {
+  let pictureIndex = pictureTypesAll.indexOf(pictureType);
+  setPicturePathCarousel(`./media/${book}-${pictureTypesAll[pictureIndex]}.jpg`);
+}
 
 const changingCart = () => {
   setCartIsClicked(true);
@@ -94,13 +101,13 @@ const addingToCart = () => {
 
     return(
     <>
-    <section className="product-carousel">CAROUSEL
-    <img className="product-picture" src={picturePath} width="400" height="400"/>
+    <section className="product-pictures-box">
+    <img className="product-picture" src={picturePath} width="400" height="400" onClick={(e) => channgingPictureCarousel()}/>
     <div className="pictures-row">
-      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" alt="Keys main picture" onClick={(e) => setPictureType("main")}/>
-      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" alt="Keys overall picture" onClick={(e) => setPictureType("overall")}/>
-      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" alt="Keys illutration picture" onClick={(e) => setPictureType("illustration")}/>
-      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" alt="Keys product picture" onClick={(e) => setPictureType("text")}/>
+      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" alt="Keys main picture" onClick={(e) => setPictureType(pictureTypesAll[0])}/>
+      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" alt="Keys overall picture" onClick={(e) => setPictureType(pictureTypesAll[1])}/>
+      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" alt="Keys illutration picture" onClick={(e) => setPictureType(pictureTypesAll[2])}/>
+      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" alt="Keys product picture" onClick={(e) => setPictureType(pictureTypesAll[3])}/>
     </div>
     </section>
     <div className="product-info-box">
@@ -114,7 +121,13 @@ const addingToCart = () => {
         <p className="product-amount">{keysBooksChosen}</p>
         <button className="button-plus" onClick={(e) => changingAmount("plus")}>+</button>
         <button className="add-cart" onClick={(e) => changingCart()}>Add to cart</button>
-        <p>{cartMessage}</p>
+        <p className="cart-message">{cartMessage}</p>
+    </div>
+    <div className="carousel">
+    <i class="fa-solid fa-xmark cross"></i>
+    <i class="fa-solid fa-caret-left arrows"></i>
+    <img src={picturePathCarousel} width="700" height="700"/>
+    <i class="fa-solid fa-caret-right arrows"></i>
     </div>
     </>)
 };

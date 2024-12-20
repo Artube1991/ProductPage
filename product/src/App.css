@@ -31,3 +31,11 @@
   opacity: 0.45;
   border-radius: 10%;
 }
+
+.cross {
+  font-size: 60px;
+}
+
+.arrows {
+  font-size: 150px;
+}

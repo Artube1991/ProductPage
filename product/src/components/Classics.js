@@ -2,7 +2,7 @@
 import { KnightsBooksContext } from "../App";
 import { useState, useContext, useEffect } from "react";
 
-const Classics = () => {
+const Classics = (props) => {
     // const [keysBooks, setKeysBooks] = useContext(KeysBooksContext);
       const [knightsBooks, setKnightsBooks] = useContext(KnightsBooksContext);
       const [knightsBooksChosen, setKnightsBooksChosen] = useState(0);
@@ -31,7 +31,7 @@ const Classics = () => {
         };
     return(
     <>
-    <section className="product-carousel">CAROUSEL</section>
+    <section className="product-pictures-box">CAROUSEL</section>
     <div className="product-info-box">
         <p className="company-title">KEYS: THE LITERATURE CLUB</p>
         <h1 className="product-title">'The Knights of Inspiration': The True Classics created by Yuri Surkov</h1>
