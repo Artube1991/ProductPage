@@ -37,5 +37,6 @@
 }
 
 .arrows {
+  display: block;
   font-size: 150px;
 }

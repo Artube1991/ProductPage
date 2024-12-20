@@ -16,8 +16,9 @@ const smallProductPicture = document.getElementsByClassName("small-product-pictu
 
 const pictureTypesAll = ["main", "overall", "illustration", "text"];
 const [picturePathCarousel, setPicturePathCarousel] = useState("");
-const [pictureCarouselIndex, setPictureCarouselIndex] = useState("");
+const [pictureCarouselIndex, setPictureCarouselIndex] = useState(0);
 const leftArrow = document.getElementById("left-arrow");
+const rightArrow = document.getElementById("right-arrow");
 
 const [cartMessage, setCartMessage] = useState("");
 const cartMessageSingle = "Item successfully added!";
@@ -41,6 +42,7 @@ const refresh = () => {
     setKeysBooksChosen(0);
     addingToCart();
     }
+    console.log(rightArrow);
   };
 
 const changingAmount = (operation) => {
@@ -65,34 +67,44 @@ const channgingPicture = () => {
       pic.setAttribute("style", "border: none; opacity: 0.45");
     }
   }
+
 };
 
 const settingPictureCarousel = () => {
-  // const pictureIndex = pictureTypesAll.indexOf(pictureType);
   setPicturePathCarousel(`./media/${book}-${pictureTypesAll[pictureCarouselIndex]}.jpg`);
-  // setPictureCarouselIndex(pictureIndex);
   console.log(pictureCarouselIndex);
-  if (pictureCarouselIndex === 0) {
-    leftArrow.setAttribute("style", "display: none");
-  } else if (pictureCarouselIndex > 0) {
-    leftArrow.setAttribute("style", "display: block");
-  }
+  console.log(leftArrow);
+  console.log(rightArrow);
+
+  // if (pictureCarouselIndex === 0) {
+  //   leftArrow.setAttribute("style", "visibility: hidden");
+  // } else if (pictureCarouselIndex === 3) {
+  //   rightArrow.setAttribute("style", "visibility: hidden");
+  // } 
 };
 
 const gettingTheIndexOfPictureCarousel = () => {
   const pictureIndex = pictureTypesAll.indexOf(pictureType);
   setPictureCarouselIndex(pictureIndex);
+
 }
 
-const channgingPictureCarousel = () => {
+const channgingPictureCarouselLeft = () => {
   console.log("click!");
   setPictureCarouselIndex(pictureCarouselIndex - 1);
+  console.log(pictureCarouselIndex);
+};
+
+const channgingPictureCarouselRight = () => {
+  console.log("click!");
+  setPictureCarouselIndex(pictureCarouselIndex + 1);
   console.log(pictureCarouselIndex);
 };
 
 const changingCart = () => {
   setCartIsClicked(true);
   setKeysBooks(keysBooks + keysBooksChosen);
+
   if (keysBooksChosen === 1) {
     setCartMessage(cartMessageSingle);
   } else if (keysBooksChosen > 1) {
@@ -147,9 +159,9 @@ const addingToCart = () => {
     </div>
     <div className="carousel">
     <i class="fa-solid fa-xmark cross"></i>
-    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarousel()}></i>
+    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarouselLeft()}></i>
     <img src={picturePathCarousel} width="700" height="700"/>
-    <i class="fa-solid fa-caret-right arrows" id="right"></i>
+    <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarouselRight()}></i>
     </div>
     </>)
 };
