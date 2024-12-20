@@ -13,8 +13,11 @@ const [pictureType, setPictureType] = useState("main");
 
 let picturePath = `./media/${book}-${pictureType}.jpg`;
 const smallProductPicture = document.getElementsByClassName("small-product-picture");
+
 const pictureTypesAll = ["main", "overall", "illustration", "text"];
 const [picturePathCarousel, setPicturePathCarousel] = useState("");
+const [pictureCarouselIndex, setPictureCarouselIndex] = useState("");
+const leftArrow = document.getElementById("left-arrow");
 
 const [cartMessage, setCartMessage] = useState("");
 const cartMessageSingle = "Item successfully added!";
@@ -24,7 +27,8 @@ const [cartIsClicked, setCartIsClicked] = useState(false);
 useEffect(() => {
   refresh();
   channgingPicture();
-}, [keysBooksChosen, pictureType]
+  settingPictureCarousel();
+}, [keysBooksChosen, pictureType, pictureCarouselIndex]
 );
 
 useEffect(() => {
@@ -63,10 +67,28 @@ const channgingPicture = () => {
   }
 };
 
-const channgingPictureCarousel = () => {
-  let pictureIndex = pictureTypesAll.indexOf(pictureType);
-  setPicturePathCarousel(`./media/${book}-${pictureTypesAll[pictureIndex]}.jpg`);
+const settingPictureCarousel = () => {
+  // const pictureIndex = pictureTypesAll.indexOf(pictureType);
+  setPicturePathCarousel(`./media/${book}-${pictureTypesAll[pictureCarouselIndex]}.jpg`);
+  // setPictureCarouselIndex(pictureIndex);
+  console.log(pictureCarouselIndex);
+  if (pictureCarouselIndex === 0) {
+    leftArrow.setAttribute("style", "display: none");
+  } else if (pictureCarouselIndex > 0) {
+    leftArrow.setAttribute("style", "display: block");
+  }
+};
+
+const gettingTheIndexOfPictureCarousel = () => {
+  const pictureIndex = pictureTypesAll.indexOf(pictureType);
+  setPictureCarouselIndex(pictureIndex);
 }
+
+const channgingPictureCarousel = () => {
+  console.log("click!");
+  setPictureCarouselIndex(pictureCarouselIndex - 1);
+  console.log(pictureCarouselIndex);
+};
 
 const changingCart = () => {
   setCartIsClicked(true);
@@ -102,7 +124,7 @@ const addingToCart = () => {
     return(
     <>
     <section className="product-pictures-box">
-    <img className="product-picture" src={picturePath} width="400" height="400" onClick={(e) => channgingPictureCarousel()}/>
+    <img className="product-picture" src={picturePath} width="400" height="400" onClick={(e) => gettingTheIndexOfPictureCarousel()}/>
     <div className="pictures-row">
       <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" alt="Keys main picture" onClick={(e) => setPictureType(pictureTypesAll[0])}/>
       <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" alt="Keys overall picture" onClick={(e) => setPictureType(pictureTypesAll[1])}/>
@@ -125,9 +147,9 @@ const addingToCart = () => {
     </div>
     <div className="carousel">
     <i class="fa-solid fa-xmark cross"></i>
-    <i class="fa-solid fa-caret-left arrows"></i>
+    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarousel()}></i>
     <img src={picturePathCarousel} width="700" height="700"/>
-    <i class="fa-solid fa-caret-right arrows"></i>
+    <i class="fa-solid fa-caret-right arrows" id="right"></i>
     </div>
     </>)
 };
