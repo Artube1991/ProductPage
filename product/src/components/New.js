@@ -16,9 +16,9 @@ const smallProductPicture = document.getElementsByClassName("small-product-pictu
 
 const pictureTypesAll = ["main", "overall", "illustration", "text"];
 const [picturePathCarousel, setPicturePathCarousel] = useState("");
-const [pictureCarouselIndex, setPictureCarouselIndex] = useState(0);
-const leftArrow = document.getElementById("left-arrow");
-const rightArrow = document.getElementById("right-arrow");
+const [pictureCarouselIndex, setPictureCarouselIndex] = useState(Number);
+
+const [carouselIsActive, setCarouselIsActive] = useState(false);
 
 const [cartMessage, setCartMessage] = useState("");
 const cartMessageSingle = "Item successfully added!";
@@ -28,8 +28,8 @@ const [cartIsClicked, setCartIsClicked] = useState(false);
 useEffect(() => {
   refresh();
   channgingPicture();
-  settingPictureCarousel();
-}, [keysBooksChosen, pictureType, pictureCarouselIndex]
+  settingCarousel();
+}, [keysBooksChosen, pictureType, pictureCarouselIndex, carouselIsActive]
 );
 
 useEffect(() => {
@@ -42,7 +42,6 @@ const refresh = () => {
     setKeysBooksChosen(0);
     addingToCart();
     }
-    console.log(rightArrow);
   };
 
 const changingAmount = (operation) => {
@@ -70,23 +69,35 @@ const channgingPicture = () => {
 
 };
 
-const settingPictureCarousel = () => {
+const settingCarousel = () => {
   setPicturePathCarousel(`./media/${book}-${pictureTypesAll[pictureCarouselIndex]}.jpg`);
   console.log(pictureCarouselIndex);
-  console.log(leftArrow);
-  console.log(rightArrow);
+  const leftArrow = document.getElementById("left-arrow");
+  const rightArrow = document.getElementById("right-arrow");
 
-  // if (pictureCarouselIndex === 0) {
-  //   leftArrow.setAttribute("style", "visibility: hidden");
-  // } else if (pictureCarouselIndex === 3) {
-  //   rightArrow.setAttribute("style", "visibility: hidden");
-  // } 
+  if (pictureCarouselIndex === 0) {
+    leftArrow.setAttribute("style", "visibility: hidden");
+  } else if (pictureCarouselIndex === 3) {
+    rightArrow.setAttribute("style", "visibility: hidden");
+  } else if (0 < pictureCarouselIndex < 4) {
+    leftArrow.setAttribute("style", "visibility: visible");
+    rightArrow.setAttribute("style", "visibility: visible");
+  }
+
+  const carousel = document.getElementsByClassName("carousel")[0];
+  console.log(carousel);
+  console.log(carouselIsActive);
+  if (carouselIsActive === true) {
+    carousel.setAttribute("style", "display: block");
+  } else if (carouselIsActive === false) {
+    carousel.setAttribute("style", "display: none");
+  }
 };
 
 const gettingTheIndexOfPictureCarousel = () => {
   const pictureIndex = pictureTypesAll.indexOf(pictureType);
   setPictureCarouselIndex(pictureIndex);
-
+  setCarouselIsActive(true);
 }
 
 const channgingPictureCarouselLeft = () => {
@@ -137,7 +148,7 @@ const addingToCart = () => {
     <>
     <section className="product-pictures-box">
     <img className="product-picture" src={picturePath} width="400" height="400" onClick={(e) => gettingTheIndexOfPictureCarousel()}/>
-    <div className="pictures-row">
+    <div className="pictures-row" id="ff">
       <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" alt="Keys main picture" onClick={(e) => setPictureType(pictureTypesAll[0])}/>
       <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" alt="Keys overall picture" onClick={(e) => setPictureType(pictureTypesAll[1])}/>
       <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" alt="Keys illutration picture" onClick={(e) => setPictureType(pictureTypesAll[2])}/>
@@ -158,7 +169,7 @@ const addingToCart = () => {
         <p className="cart-message">{cartMessage}</p>
     </div>
     <div className="carousel">
-    <i class="fa-solid fa-xmark cross"></i>
+    <i class="fa-solid fa-xmark cross" onClick={(e) => setCarouselIsActive(false)}></i>
     <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarouselLeft()}></i>
     <img src={picturePathCarousel} width="700" height="700"/>
     <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarouselRight()}></i>
