@@ -1,6 +1,6 @@
 import { KeysBooksContext } from "../App";
 // import { KnightsBooksContext } from "../App";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 
 
 const New = (props) => {
@@ -25,6 +25,8 @@ const cartMessageSingle = "Item successfully added!";
 const cartMessagePlural = "Items successfully added!";
 const [cartIsClicked, setCartIsClicked] = useState(false);
 
+const [num, setNum] = useState(0);
+
 useEffect(() => {
   refresh();
   channgingPicture();
@@ -34,8 +36,17 @@ useEffect(() => {
 
 useEffect(() => {
   addingToCart();
-}, [cartIsClicked]
+}, [cartIsClicked, carouselIsActive]
 );
+
+useEffect(() => {
+  console.log(pictureCarouselIndex);
+  document.addEventListener("keydown", keyHandler);
+  return _ => {
+    document.removeEventListener("keydown", keyHandler);
+    console.log("I removed");
+  };
+}, [carouselIsActive, pictureCarouselIndex, num])
 
 const refresh = () => {
     if (keysBooksChosen < 0) {
@@ -66,7 +77,6 @@ const channgingPicture = () => {
       pic.setAttribute("style", "border: none; opacity: 0.45");
     }
   }
-
 };
 
 const settingCarousel = () => {
@@ -85,37 +95,78 @@ const settingCarousel = () => {
   }
 
   const carousel = document.getElementsByClassName("carousel")[0];
-  console.log(carousel);
   console.log(carouselIsActive);
   if (carouselIsActive === true) {
     carousel.setAttribute("style", "display: block");
   } else if (carouselIsActive === false) {
     carousel.setAttribute("style", "display: none");
-  }
+  };
 };
 
 const gettingTheIndexOfPictureCarousel = () => {
   const pictureIndex = pictureTypesAll.indexOf(pictureType);
   setPictureCarouselIndex(pictureIndex);
+  setNum(pictureIndex);
   setCarouselIsActive(true);
-}
+  console.log(pictureCarouselIndex);
+  console.log(carouselIsActive);
+};
 
 const channgingPictureCarouselLeft = () => {
   console.log("click!");
-  setPictureCarouselIndex(pictureCarouselIndex - 1);
+  setPictureCarouselIndex((pictureCarouselIndex) => pictureCarouselIndex - 1);
   console.log(pictureCarouselIndex);
 };
 
 const channgingPictureCarouselRight = () => {
   console.log("click!");
-  setPictureCarouselIndex(pictureCarouselIndex + 1);
+  setPictureCarouselIndex((pictureCarouselIndex) => pictureCarouselIndex + 1);
   console.log(pictureCarouselIndex);
+};
+
+// const carouselKeys = (e) => {
+//   console.log(num);
+//   document.addEventListener("keydown", (e) => {
+//     if (carouselIsActive === true) {
+//       e.preventDefault();
+//     if (e.code === "Escape") {
+//       setCarouselIsActive(false)
+//     } else if (e.code === "ArrowLeft" && num >= 0 ) {
+//       setNum(num - 1);
+//     } else if (e.code === "ArrowRight" && num <= 3) {
+//       setNum(num + 1);
+//     }
+//   }
+//   }
+//   );
+// };
+
+// const carouselKeys = (e) => {
+//   console.log(num);
+//   document.addEventListener("keydown", keyHandler);
+//   return _ => {
+//     window.removeEventListener("keypress", keyHandler);
+//   }
+// };
+
+const keyHandler = (e) => {
+  if (carouselIsActive === true) {
+    e.preventDefault();
+  if (e.code === "Escape") {
+    setCarouselIsActive(false)
+  } else if (e.code === "ArrowLeft" && pictureCarouselIndex > 0 ) {
+    console.log(num);
+    setPictureCarouselIndex(pictureCarouselIndex - 1);
+  } else if (e.code === "ArrowRight" && pictureCarouselIndex < 3) {
+    console.log(num);
+    setPictureCarouselIndex(pictureCarouselIndex + 1);
+  }
+}
 };
 
 const changingCart = () => {
   setCartIsClicked(true);
   setKeysBooks(keysBooks + keysBooksChosen);
-
   if (keysBooksChosen === 1) {
     setCartMessage(cartMessageSingle);
   } else if (keysBooksChosen > 1) {
@@ -170,9 +221,9 @@ const addingToCart = () => {
     </div>
     <div className="carousel">
     <i class="fa-solid fa-xmark cross" onClick={(e) => setCarouselIsActive(false)}></i>
-    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarouselLeft()}></i>
+    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={channgingPictureCarouselLeft}></i>
     <img src={picturePathCarousel} width="700" height="700"/>
-    <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarouselRight()}></i>
+    <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={channgingPictureCarouselRight}></i>
     </div>
     </>)
 };
