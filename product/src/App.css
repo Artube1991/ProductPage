@@ -1,3 +1,17 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+  margin: 2% 0% 2% 5%;
+}
+
+.website-title {
+  margin: 1%;
+  font-family: 'Cooper Black';
+  font-size: xx-large;
+}
+
 .nav-bar {
   display: flex;
   flex-direction: row;
@@ -5,8 +19,8 @@
 }
 
 .menu {
-  position: absolute;
-  right: 10%;
+  position: relative;
+  left: 2%;
   display: flex;
   flex-direction: row;
   padding: 0;
@@ -14,17 +28,113 @@
 
 .menu-item {
   list-style: none;
-  margin-right: 2%;
+  font-size: x-large;
+  /* text-align: center; */
+  border: 1px solid red;
+  color: blue;
 }
 
+
 #cart-icon {
-  position: absolute;
-  right: 3%;
-  font-size: xx-large;
+  position: relative;
+  left: 7%;
+  font-size: 40px;
+  margin: 1%;
+  color: grey;
+}
+
+#cart-icon:hover {
+  color: orange;
+}
+
+#cart-icon:active {
+  color: orangered;
 }
 
 .cart {
   display: none;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-pictures-box, .product-info-box {
+  margin: 3%;
+}
+
+.company-title {
+  color: orange;
+  font-family: 'Cooper Black';
+  font-size: small;
+}
+
+.current-price, .discount-size {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.current-price {
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.discount-size {
+  position: relative;
+  left: 4%;
+  font-size: medium;
+  background-color: lightgray;
+  color: orangered;
+  padding: 1%;
+}
+
+.old-price {
+  position: relative;
+  top: -3%;
+  font-size: medium;
+  color: gray;
+}
+
+.cart-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button-minus, .product-amount, .button-plus, .add-cart {
+  margin: 3%;
+}
+
+.button-minus, .button-plus {
+  color: orange;
+  font-size: larger;
+  font-weight: bold;
+  background-color: white;
+  border: none;
+}
+
+.add-cart {
+  background-color: orange;
+  width: 150px;
+  height: 30px;
+  border-radius: 1vh;
+  color: white;
+  font-weight: 600;
+}
+
+.add-cart:hover {
+  background-color: blue;
+}
+
+.add-cart:active {
+  background-color: orangered;
+}
+
+.cart-button-text {
+  position: relative;
+  left: 7%;
 }
 
 .small-product-picture {
