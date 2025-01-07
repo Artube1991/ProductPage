@@ -1,5 +1,6 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 #root {
@@ -15,6 +16,7 @@
 .nav-bar {
   display: flex;
   flex-direction: row;
+  align-items: center;
   height: 60px;
 }
 
@@ -36,8 +38,8 @@
 
 
 #cart-icon {
-  position: relative;
-  left: 7%;
+  position: absolute;
+  right: 15%;
   font-size: 40px;
   margin: 1%;
   color: grey;
@@ -49,6 +51,12 @@
 
 #cart-icon:active {
   color: orangered;
+}
+
+#userpic {
+  position: absolute;
+  right: 10%;
+  border-radius: 50%;
 }
 
 .cart {
@@ -65,7 +73,7 @@
 }
 
 .company-title {
-  color: orange;
+  color: darkorange;
   font-family: 'Cooper Black';
   font-size: small;
 }
@@ -108,7 +116,7 @@
 }
 
 .button-minus, .button-plus {
-  color: orange;
+  color: darkorange;
   font-size: larger;
   font-weight: bold;
   background-color: white;
@@ -116,7 +124,7 @@
 }
 
 .add-cart {
-  background-color: orange;
+  background-color: darkorange;
   width: 150px;
   height: 30px;
   border-radius: 1vh;
@@ -137,9 +145,22 @@
   left: 7%;
 }
 
+.product-picture {
+  border-radius: 5%;
+}
+
 .small-product-picture {
   opacity: 0.45;
   border-radius: 10%;
+  margin: 3%;
+}
+
+.small-product-picture:first-child {
+  margin-left: 0;
+}
+
+.small-product-picture:last-child {
+  margin-right: 0;
 }
 
 .cross {

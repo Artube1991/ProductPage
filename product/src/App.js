@@ -24,6 +24,12 @@ function App() {
     cartUpdate();
   }, [keysBooks, knightsBooks]);
 
+  useEffect(() => {
+    const userpic = document.getElementById("userpic");
+    userpic.addEventListener("mouseover", smileOn);
+    userpic.addEventListener("mouseout", smileOff);
+  }, [])
+
   const cartUpdate = () => {
   if (keysBooks !== 0 && knightsBooks !== 0) {
     setCartMessage(`You're going to buy ${keysBooks} books 'Keys and Castles' and ${knightsBooks} books 'The Knight of Inspiration'`);
@@ -49,6 +55,26 @@ function App() {
     }
   };
 
+  // const smileChecking = () => {
+  //   const userpic = document.getElementById("userpic");
+  //   console.log(isSmiling);
+  //   if (isSmiling === true) {
+  //     userpic.setAttribute("src", "./media/ivanov-smile.jpg");
+  //   } else if (isSmiling === false) {
+  //     userpic.setAttribute("src", "./media/ivanov-new.jpg");
+  //   }
+  // };
+
+  const smileOn = () => {
+    const userpic = document.getElementById("userpic");
+    userpic.setAttribute("src", "./media/ivanov-smile.jpg");
+  };
+
+  const smileOff = () => {
+    const userpic = document.getElementById("userpic");
+    userpic.setAttribute("src", "./media/ivanov-new.jpg");
+  };
+
   return (
     <>
     <nav className="nav-bar">
@@ -60,6 +86,7 @@ function App() {
       <li className="menu-item"><Link to="/about">About</Link></li>
     </ul>
     <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}></i>
+    <img id="userpic" src="./media/ivanov-new.jpg" alt="User Avatar" width="50" height="50"/>
     </nav>
     <KeysBooksContext.Provider value={[keysBooks, setKeysBooks]}>
     <KnightsBooksContext.Provider value={[knightsBooks, setKnightBooks]}>

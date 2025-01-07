@@ -150,14 +150,15 @@ const deletingCartMessage = () => {
 };
 
     return(
+    <>
     <div className="product">
     <section className="product-pictures-box">
-    <img className="product-picture" src={picturePath} width="400" height="400" onClick={(e) => gettingTheIndexOfPictureCarousel()}/>
-    <div className="pictures-row" id="ff">
-      <img className="small-product-picture" src="./media/keys-main.jpg" width="80" height="80" alt="Keys main picture" onClick={(e) => setPictureType(pictureTypesAll[0])}/>
-      <img className="small-product-picture" src="./media/keys-overall.jpg" width="80" height="80" alt="Keys overall picture" onClick={(e) => setPictureType(pictureTypesAll[1])}/>
-      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="80" height="80" alt="Keys illutration picture" onClick={(e) => setPictureType(pictureTypesAll[2])}/>
-      <img className="small-product-picture" src="./media/keys-text.jpg" width="80" height="80" alt="Keys product picture" onClick={(e) => setPictureType(pictureTypesAll[3])}/>
+    <img className="product-picture" src={picturePath} width="300" height="300" onClick={(e) => gettingTheIndexOfPictureCarousel()}/>
+    <div className="pictures-row">
+      <img className="small-product-picture" src="./media/keys-main.jpg" width="60" height="60" alt="Keys main picture" onClick={(e) => setPictureType(pictureTypesAll[0])}/>
+      <img className="small-product-picture" src="./media/keys-overall.jpg" width="60" height="60" alt="Keys overall picture" onClick={(e) => setPictureType(pictureTypesAll[1])}/>
+      <img className="small-product-picture" src="./media/keys-illustration.jpg" width="60" height="60" alt="Keys illutration picture" onClick={(e) => setPictureType(pictureTypesAll[2])}/>
+      <img className="small-product-picture" src="./media/keys-text.jpg" width="60" height="60" alt="Keys product picture" onClick={(e) => setPictureType(pictureTypesAll[3])}/>
     </div>
     </section>
     <div className="product-info-box">
@@ -177,13 +178,14 @@ const deletingCartMessage = () => {
         </div>
         <p className="cart-message">{cartMessage}</p>
     </div>
+    </div>
     <div className="carousel">
     <i class="fa-solid fa-xmark cross" onClick={(e) => setCarouselIsActive(false)}></i>
     <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarousel("minus")}></i>
     <img src={picturePathCarousel} width="700" height="700"/>
     <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarousel("plus")}></i>
     </div>
-    </div>)
+    </>)
 };
 
 export default New;
