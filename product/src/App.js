@@ -20,6 +20,8 @@ function App() {
   const cart = document.querySelector(".cart");
   const cartIcon = document.querySelector(".cart-icon");
 
+  const menuItemsStyle = {color: 'gray', textDecoration: 'none'};
+
   useEffect(() => {
     cartUpdate();
   }, [keysBooks, knightsBooks]);
@@ -80,10 +82,10 @@ function App() {
     <nav className="nav-bar">
     <div className="website-title">KEYS / КЛЮЧИ </div>
     <ul className="menu">
-      <li className="menu-item"><Link to="/">NEW!</Link></li>
-      <li className="menu-item"><Link to="/classic">Our Classics</Link></li>
-      <li className="menu-item"><Link to="/contact">Contact</Link></li>
-      <li className="menu-item"><Link to="/about">About</Link></li>
+      <li className="menu-item"><Link style={menuItemsStyle} to="/">NEW!</Link></li>
+      <li className="menu-item"><Link style={menuItemsStyle} to="/classic">Our Classics</Link></li>
+      <li className="menu-item"><Link style={menuItemsStyle} to="/contact">Contact</Link></li>
+      <li className="menu-item"><Link style={menuItemsStyle} to="/about">About</Link></li>
     </ul>
     <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}></i>
     <img id="userpic" src="./media/ivanov-new.jpg" alt="User Avatar" width="50" height="50"/>
