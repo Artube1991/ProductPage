@@ -137,7 +137,8 @@ function App() {
   return (
     <>
     <nav className="nav-bar">
-    <div className="website-title">KEYS / КЛЮЧИ </div>
+    <a href="/"><img className="website-logo" src="./media/logo.png" alt="Literature club Keys"/></a>
+    <p className="website-title">KEYS / КЛЮЧИ </p>
     <ul className="menu">
       <li className="menu-item"><Link style={menuItemsStyle} to="/">NEW!</Link></li>
       <li className="menu-item"><Link style={menuItemsStyle} to="/classic">Our Classics</Link></li>
