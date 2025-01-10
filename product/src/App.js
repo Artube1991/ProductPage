@@ -153,7 +153,7 @@ function App() {
     <CartContext.Provider value={[cartIsVisible, setCartIsVisible]}>
     <Routes>      
       <Route exact path="/" element={<New book="keys" />}/>
-      <Route path="/classic" element={<Classics book="knigths" />} />
+      <Route path="/classic" element={<Classics book="knights" />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<About />} />
     </Routes>

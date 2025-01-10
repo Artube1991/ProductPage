@@ -24,6 +24,7 @@ const cartMessagePlural = "Items successfully added!";
 const [cartIsClicked, setCartIsClicked] = useState(false);
 
 useEffect(() => {
+  console.log(book);
   refreshBooksChosen();
   channgingPicture();
   settingCarousel();
