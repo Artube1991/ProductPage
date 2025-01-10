@@ -235,11 +235,54 @@
   margin-right: 0;
 }
 
+.carousel-background {
+  background-color: gray;
+  opacity: 0.966;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+
+}
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  min-width: 100%;
+  min-height: 100%;
+
+  /* min-width: 100%;
+  min-height: 100%;
+  max-width: 800px;
+  max-height: 800px; */
+}
+
+.picture-carousel {
+  max-width: 700px;
+  max-height: 700px;
+  min-height: 200px;
+  min-width: 200px;
+}
+
 .cross {
+  position: absolute;
+  right: 5%;
   font-size: 60px;
+  color: black;
+}
+
+.cross:hover {
+  color: orangered;
 }
 
 .arrows {
   display: block;
   font-size: 150px;
+  color: white;
 }

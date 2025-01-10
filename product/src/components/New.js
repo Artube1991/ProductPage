@@ -1,9 +1,11 @@
-import { KeysBooksContext } from "../App";
+import { CartContext, KeysBooksContext } from "../App";
+
 // import { KnightsBooksContext } from "../App";
 import { useState, useContext, useEffect } from "react";
 
 const New = (props) => {
   const [keysBooks, setKeysBooks] = useContext(KeysBooksContext);
+  const [cartIsVisible, setCartIsVisible] = useContext(CartContext);
   const book = props.book;
   const [keysBooksChosen, setKeysBooksChosen] = useState(0);
 //   const [knightsBooks, setKnightsBooks] = useContext(KnightsBooksContext);
@@ -76,10 +78,11 @@ const settingCarousel = () => {
     rightArrow.setAttribute("style", "visibility: visible");
   }
 
-  const carousel = document.getElementsByClassName("carousel")[0];
+  const carousel = document.querySelector(".carousel-background");
   console.log(carouselIsActive);
   if (carouselIsActive === true) {
     carousel.setAttribute("style", "display: block");
+    setCartIsVisible(false);
   } else if (carouselIsActive === false) {
     carousel.setAttribute("style", "display: none");
   };
@@ -179,11 +182,13 @@ const deletingCartMessage = () => {
         <p className="cart-message">{cartMessage}</p>
     </div>
     </div>
-    <div className="carousel">
+    <div className="carousel-background">
     <i class="fa-solid fa-xmark cross" onClick={(e) => setCarouselIsActive(false)}></i>
+    <div className="carousel">
     <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarousel("minus")}></i>
-    <img src={picturePathCarousel} width="700" height="700"/>
+    <img className="picture-carousel" src={picturePathCarousel} style={{opacity: 1}} />
     <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarousel("plus")}></i>
+    </div>
     </div>
     </>)
 };

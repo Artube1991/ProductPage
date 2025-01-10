@@ -8,16 +8,18 @@ import Contact from './components/Contact';
 
 export const KeysBooksContext = React.createContext();
 export const KnightsBooksContext = React.createContext();
+export const CartContext = React.createContext();
 
 function App() {
   const cartRef = useRef(null);
 
   const [keysBooks, setKeysBooks] = useState(0);
   const [knightsBooks, setKnightBooks] = useState(0);
+
   // const [keysAmount, setKeysAmount] = useState(0);
   // const [knightsAmount, setKnightsAmount] = useState(0);
-  const [cartMessage, setCartMessage] = useState("Your cart is empty!");
   const [cartIsVisible, setCartIsVisible] = useState(false);
+  const [cartMessage, setCartMessage] = useState("Your cart is empty!");
   const [checkoutLink, setCheckoutLink] = useState("https://vk.com/market-57829582");
 
   const cartIcon = document.querySelector(".cart-icon");
@@ -147,12 +149,14 @@ function App() {
     </nav>
     <KeysBooksContext.Provider value={[keysBooks, setKeysBooks]}>
     <KnightsBooksContext.Provider value={[knightsBooks, setKnightBooks]}>
+    <CartContext.Provider value={[cartIsVisible, setCartIsVisible]}>
     <Routes>      
       <Route exact path="/" element={<New book="keys" />}/>
       <Route path="/classic" element={<Classics book="knigths" />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<About />} />
     </Routes>
+    </CartContext.Provider>
     </KnightsBooksContext.Provider>
     </KeysBooksContext.Provider>
     <div className="cart" ref={cartRef}>
@@ -174,9 +178,6 @@ function App() {
       <button className="removing-cart" onClick={(e) => removeAll()}>REMOVE ALL</button>
       </div>
       </div>
-    <div className="main">
-      <h1>something</h1>
-    </div>
     </>
   );
 }
