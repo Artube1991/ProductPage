@@ -66,6 +66,19 @@ body {
   color: orangered;
 }
 
+.book-amount {
+  position: absolute;
+  font-size: 15px;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  top: 5%;
+  right: 5%;
+  color: orangered;
+  background-color: white;
+  border-radius: 3em;
+}
+
 #userpic {
   position: absolute;
   right: 10%;

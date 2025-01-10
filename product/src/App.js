@@ -25,6 +25,7 @@ function App() {
   const cartIcon = document.querySelector(".cart-icon");
   const [cartKeysAmount, setCartKeysAmount] = useState("");
   const [cartKnightsAmount, setCartKnightsAmount] = useState("");
+  const [booksAmount, setBookAmount] = useState(Number);
 
   const menuItemsStyle = {color: 'gray', textDecoration: 'none', fontFamily: 'Cooper Black'};
 
@@ -45,7 +46,8 @@ function App() {
 
   useEffect(() => {
     cartUpdate();
-  }, [keysBooks, knightsBooks, cartIsVisible]);
+    bookAmountUpdate();
+  }, [keysBooks, knightsBooks, booksAmount, cartIsVisible]);
 
   useEffect(() => {
     const userpic = document.getElementById("userpic");
@@ -60,6 +62,7 @@ function App() {
     const checkout = document.querySelector(".checkout");
     const removingCart = document.querySelector(".removing-cart");
 
+    setBookAmount(keysBooks + knightsBooks);
 
   if (cartIsVisible === true) {
     cart.setAttribute("style", "display: block;");
@@ -112,7 +115,17 @@ function App() {
   const removeAll = () => {
     setKeysBooks(0);
     setKnightBooks(0);
-  }
+  };
+
+  const bookAmountUpdate = () => {
+    const bookAmountSpan = document.querySelector(".book-amount");
+    if (booksAmount > 0 ) {
+      console.log("!!!!!!!!");
+      bookAmountSpan.setAttribute("style", "display: block;");
+    } else {
+      bookAmountSpan.setAttribute("style", "display: none;");
+    }
+  };
 
   // const smileChecking = () => {
   //   const userpic = document.getElementById("userpic");
@@ -145,7 +158,7 @@ function App() {
       <li className="menu-item"><Link style={menuItemsStyle} to="/contact">Contact</Link></li>
       <li className="menu-item"><Link style={menuItemsStyle} to="/about">About</Link></li>
     </ul>
-    <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}></i>
+    <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}><span className="book-amount">{booksAmount}</span></i>
     <img id="userpic" src="./media/ivanov-new.jpg" alt="User Avatar" width="50" height="50"/>
     </nav>
     <KeysBooksContext.Provider value={[keysBooks, setKeysBooks]}>
