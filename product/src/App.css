@@ -40,7 +40,6 @@
   background-color: orange;
 }
 
-
 #cart-icon {
   position: absolute;
   right: 15%;
@@ -63,7 +62,29 @@
   border-radius: 50%;
 }
 
-.cart {
+#cart {
+  display: none;
+  position: absolute;
+  top: 90px;
+  right: 5%;
+  font-size: small;
+  color: white;
+  background-color: gray;
+  padding: 2%;
+  opacity: 0.85;
+  width: 300px;
+}
+
+.product-amount-cart {
+  font-size: x-large;
+  margin-left: 1%;
+}
+
+.keys-cart-box {
+  display: none;
+}
+
+.knights-cart-box {
   display: none;
 }
 

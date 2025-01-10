@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
 import New from './components/New';
 import Classics from './components/Classics';
@@ -10,17 +10,34 @@ export const KeysBooksContext = React.createContext();
 export const KnightsBooksContext = React.createContext();
 
 function App() {
+  const cartRef = useRef(null);
+
   const [keysBooks, setKeysBooks] = useState(0);
-  const [knightsBooks, setKnightBooks] = useState(11);
+  const [knightsBooks, setKnightBooks] = useState(0);
   // const [keysAmount, setKeysAmount] = useState(0);
   // const [knightsAmount, setKnightsAmount] = useState(0);
   const [cartMessage, setCartMessage] = useState("Your cart is empty!");
   const [cartIsVisible, setCartIsVisible] = useState(false);
 
-  const cart = document.querySelector(".cart");
-  const cartIcon = document.querySelector(".cart-icon");
 
-  const menuItemsStyle = {color: 'gray', textDecoration: 'none'};
+  const cartIcon = document.querySelector(".cart-icon");
+  const [cartKeysAmount, setCartKeysAmount] = useState("");
+  const [cartKnightsAmount, setCartKnightsAmount] = useState("");
+
+  const menuItemsStyle = {color: 'gray', textDecoration: 'none', fontFamily: 'Cooper Black'};
+
+  const showCart = () => {
+    const cart = document.getElementById("cart");
+    if (cartIsVisible === false) {
+      setCartIsVisible(true);
+      // cartRef.current.setAttribute("style", "display: block");
+      cart.setAttribute("style", "display: block");
+    } else if (cartIsVisible === true) {
+      setCartIsVisible(false);
+      cart.setAttribute("style", "display: none");
+      // cartRef.current.setAttribute("style", "display: none");
+    }
+  };
 
   useEffect(() => {
     cartUpdate();
@@ -30,30 +47,38 @@ function App() {
     const userpic = document.getElementById("userpic");
     userpic.addEventListener("mouseover", smileOn);
     userpic.addEventListener("mouseout", smileOff);
-  }, [])
+  }, []);
 
   const cartUpdate = () => {
+    const keysCartBox = document.querySelector(".keys-cart-box");
+    const knightsCartBox = document.querySelector(".knights-cart-box");
   if (keysBooks !== 0 && knightsBooks !== 0) {
     setCartMessage(`You're going to buy ${keysBooks} books 'Keys and Castles' and ${knightsBooks} books 'The Knight of Inspiration'`);
+    setCartKeysAmount(keysBooks);
+    setCartKnightsAmount(knightsBooks);
+    keysCartBox.setAttribute("style", "display: block;");
+    knightsCartBox.setAttribute("style", "display: block;")
     }
   else if (keysBooks !==0 && knightsBooks < 1) {
     setCartMessage(`You're going to buy ${keysBooks} books 'Keys and Castles'`);
+    setCartKeysAmount(keysBooks);
+    setCartKnightsAmount("");
+    keysCartBox.setAttribute("style", "display: block;");
+    knightsCartBox.setAttribute("style", "display: none;")
     }
   else if (keysBooks < 1 && knightsBooks !== 0) {
     setCartMessage(`You're going to buy ${knightsBooks} books 'The Knight of Inspiration'`);
+    setCartKeysAmount("");
+    setCartKnightsAmount(knightsBooks);
+    keysCartBox.setAttribute("style", "display: none;");
+    knightsCartBox.setAttribute("style", "display: block;");
     }
   else if (keysBooks < 1 && keysBooks < 1) {
-    setCartMessage("Your cart is empty!")
-    }
-  };
-
-  const showCart = () => {
-    if (cartIsVisible === false) {
-      setCartIsVisible(true);
-      cart.setAttribute("style", "display: block");
-    } else if (cartIsVisible === true) {
-      setCartIsVisible(false);
-      cart.setAttribute("style", "display: none");
+    setCartKeysAmount("");
+    setCartKnightsAmount("");
+    setCartMessage("Your cart is empty!");
+    keysCartBox.setAttribute("style", "display: none;");
+    knightsCartBox.setAttribute("style", "display: none;");
     }
   };
 
@@ -100,12 +125,20 @@ function App() {
     </Routes>
     </KnightsBooksContext.Provider>
     </KeysBooksContext.Provider>
-    <div className="cart">
-      <img className="keys-picture" src="" alt="Keys and Castles"/>
-      <p className="product-amount-cart">{keysBooks}</p>
-      <img className="knights-picture" src="" alt="The Knights of Inspiration"/>
-      <p className="product-amount-cart">{knightsBooks}</p>
+    <div id="cart" ref={cartRef}>
+      <div className="keys-cart-box">
+      <img className="keys-picture" src="./media/keys-main.jpg" width="50px" height="50px" alt="Keys and Castles"/>
+      <span className="product-amount-cart">×</span>
+      <span className="product-amount-cart">{cartKeysAmount}</span>
+      </div>
+      <div className="knights-cart-box">
+      <img className="knights-picture" src="./media/knights-main.jpg" width="50px" height="50px" alt="The Knights of Inspiration"/>
+      <span className="product-amount-cart">×</span>
+      <span className="product-amount-cart">{cartKnightsAmount}</span>
+      </div>
       <p>{cartMessage}</p>
+      {/* <button className="checkout">PROCEED TO CHECKOUT</button>
+      <button className="removing-cart">REMOVE THE ITEMS</button> */}
       </div>
     <div className="main">
       <h1>something</h1>
