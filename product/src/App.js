@@ -159,11 +159,13 @@ function App() {
       <li className="menu-item"><Link style={menuItemsStyle} to="/contact">Contact</Link></li>
       <li className="menu-item"><Link style={menuItemsStyle} to="/about">About</Link></li>
     </ul>
+    <div className="cart-icon-and-userpic">
     <div className="cart-icon-box">
     <i class="fa-solid fa-cart-shopping" id="cart-icon" onClick={(e) => showCart()}></i>
     <p className="book-amount">{booksAmount}</p>
     </div>
     <img id="userpic" src="./media/ivanov-new.jpg" alt="User Avatar" width="50" height="50"/>
+    </div>
     </nav>
     <KeysBooksContext.Provider value={[keysBooks, setKeysBooks]}>
     <KnightsBooksContext.Provider value={[knightsBooks, setKnightBooks]}>
