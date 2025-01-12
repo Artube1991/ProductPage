@@ -150,6 +150,7 @@ function App() {
   return (
     <>
     <nav className="nav-bar">
+    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
     <a href="/"><img className="website-logo" src="./media/logo.png" alt="Literature club Keys"/></a>
     <p className="website-title">KEYS / КЛЮЧИ </p>
     <ul className="menu">
@@ -177,16 +178,16 @@ function App() {
     <i class="fa-solid fa-xmark cross-little" onClick={(e) => closingCart()}></i>
       <div className="keys-cart-box">
       <img className="keys-picture" src="./media/keys-main.jpg" width="50px" height="50px" alt="Keys and Castles"/>
-      <span className="product-amount-cart">$4 ×</span>
+      <span className="product-amount-cart">$5.75 ×</span>
       <span className="product-amount-cart">{cartKeysAmount}</span>
       </div>
       <div className="knights-cart-box">
       <img className="knights-picture" src="./media/knights-main.jpg" width="50px" height="50px" alt="The Knights of Inspiration"/>
-      <span className="product-amount-cart">$3 ×</span>
+      <span className="product-amount-cart">$4 ×</span>
       <span className="product-amount-cart">{cartKnightsAmount}</span>
       </div>
       <p>{cartMessage}</p>
-      <p className="subtotal">SUBTOTAL: ${4 * keysBooks + 3 * knightsBooks}</p>
+      <p className="subtotal">SUBTOTAL: ${5.75 * keysBooks + 4 * knightsBooks}</p>
       <div className="cart-handler-buttons">
       <a className="checkout" href={checkoutLink} target='_blank'> CHECKOUT </a>
       <button className="removing-cart" onClick={(e) => removeAll()}>REMOVE ALL</button>

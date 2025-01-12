@@ -168,18 +168,21 @@ const deletingCartMessage = () => {
         <p className="company-title">KEYS: THE LITERATURE CLUB</p>
         <h1 className="product-title">'The Knights of Inspiration': True Classics Collected by Yuri Surkov</h1>
         <p className="product-info">Lorem ipsum para bellum!!!!!!!!! I want to add here some new text about this book.</p>
-        <p className="current-price">$4.00<span className="discount-size">30%</span></p>
+        <p className="current-price">$4.00</p>
+        <p className="discount-size">30%</p>
         <p className="old-price">$6.00</p>
+        <div className="cart-box">
         <div className="cart-buttons">
         <button className="button-minus" onClick={(e) => changingAmount("minus")}>-</button>
         <p className="product-amount">{knightsBooksChosen}</p>
         <button className="button-plus" onClick={(e) => changingAmount("plus")}>+</button>
+        </div>
         <button className="add-cart" onClick={(e) => changingCart()}>
         <i class="fa-solid fa-cart-shopping"></i>
           <span className="cart-button-text">Add to cart</span>
           </button>
-        </div>
         <p className="cart-message">{cartMessage}</p>
+        </div>
     </div>
     </div>
     <div className="carousel-background">

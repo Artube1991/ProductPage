@@ -11,6 +11,10 @@ body {
   margin: 2% 0% 2% 5%;
 }
 
+#mobile-menu-icon {
+  display: none;
+}
+
 .website-logo {
   width: 50px;
   height: 50px;
@@ -174,9 +178,7 @@ body {
 }
 
 .current-price, .discount-size {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: inline;
 }
 
 .current-price {
@@ -194,8 +196,6 @@ body {
 }
 
 .old-price {
-  position: relative;
-  top: -3%;
   font-size: medium;
   color: gray;
 }
@@ -259,8 +259,10 @@ body {
 }
 
 .carousel-background {
+  display: block;
   background-color: gray;
   opacity: 0.966;
+  z-index: 1000;
   position: absolute;
   top: 0;
   left: 0;
@@ -268,7 +270,6 @@ body {
   right: 0;
   min-width: 100%;
   min-height: 100%;
-
 }
 
 .carousel {
@@ -277,13 +278,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: gray;
-  min-width: 100%;
-  min-height: 100%;
-
-  /* min-width: 100%;
-  min-height: 100%;
-  max-width: 800px;
-  max-height: 800px; */
+  margin-top: 5%;
 }
 
 .picture-carousel {
@@ -309,3 +304,101 @@ body {
   font-size: 150px;
   color: white;
 }
+  
+@media only screen and (max-width: 600px) {
+#mobile-menu-icon {
+  display: block;
+  font-size: xx-large;
+}
+
+.carousel-background {
+  display: block;
+  opacity: 1;
+  position: static;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin-top: 5%;
+}
+
+.picture-carousel {
+  max-width: 700px;
+  max-height: 700px;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.arrows {
+  color: darkorange
+}
+
+.cross {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  opacity: 0.75;
+}
+
+#cart-icon, #userpic {
+  position: static;
+}
+
+.product-pictures-box {
+  display: none;
+}
+
+.old-price {
+  /* position: absolute;
+  right: 5%;
+  transform: translate(-50%, -50%); */
+  float: right;
+}
+
+.discount-size {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cart-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-buttons {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.button-minus, .product-amount, .button-plus {
+  display: inline-block;
+  font-size: 80px;
+}
+
+.button-minus {
+  position: relative;
+  right: 100%;
+}
+
+.button-plus {
+  position: relative;
+  left: 100%;
+}
+
+
+  }
