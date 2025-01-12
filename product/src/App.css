@@ -54,9 +54,13 @@ body {
   background-color: orange;
 }
 
-#cart-icon {
+.cart-icon-box {
   position: absolute;
   right: 15%;
+}
+
+#cart-icon {
+  position: relative;
   font-size: 40px;
   margin: 1%;
   color: grey;
@@ -72,12 +76,13 @@ body {
 
 .book-amount {
   position: absolute;
+  bottom: 15%;
+  left: 50%;
   font-size: 15px;
+  font-weight: bold;
   width: 16px;
   height: 16px;
   text-align: center;
-  top: 5%;
-  right: 5%;
   color: orangered;
   background-color: white;
   border-radius: 3em;
@@ -304,6 +309,13 @@ body {
   font-size: 150px;
   color: white;
 }
+
+@media only screen and (max-width: 1020px) {
+  #userpic {
+    position: absolute;
+    right: 5%;
+  }
+}
   
 @media only screen and (max-width: 600px) {
 #mobile-menu-icon {
@@ -352,9 +364,10 @@ body {
   opacity: 0.75;
 }
 
-#cart-icon, #userpic {
+/* .cart-icon-box, #userpic {
   position: static;
-}
+  margin-left: 2%;
+} */
 
 .product-pictures-box {
   display: none;
