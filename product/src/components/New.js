@@ -185,9 +185,11 @@ const deletingCartMessage = () => {
         <p className="company-title">KEYS: THE LITERATURE CLUB</p>
         <h1 className="product-title">'Keys and Castles': Limited Edition 2019</h1>
         <p className="product-info">Lorem ipsum para bellum!!!!!!!!!</p>
+        <div className="price-box">
         <p className="current-price">$5.75</p>
         <p className="discount-size">50%</p>
         <p className="old-price">$11.50</p>
+        </div>
         <div className="cart-box">
         <div className="cart-buttons">
         <button className="button-minus" onClick={(e) => changingAmount("minus")}>-</button>

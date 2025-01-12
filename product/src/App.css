@@ -402,26 +402,25 @@
   top: 70px;
 }
 
-/* .cart-icon-box, #userpic {
-  position: static;
-  margin-left: 2%;
-} */
 
 .product-pictures-box {
   display: none;
 }
 
+.price-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .old-price {
-  /* position: absolute;
-  right: 5%;
-  transform: translate(-50%, -50%); */
-  float: right;
+  position: absolute;
+  right: 1%;
+  text-decoration:line-through;
 }
 
 .discount-size {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: 5%;
 }
 
 .cart-box {
