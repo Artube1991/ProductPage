@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 90px;
+  height: 95px;
   overflow-x: hidden;
 }
 
@@ -345,6 +345,7 @@
   display: block;
   font-size: xx-large;
   margin: 2%;
+  width: 30px;
 }
 
 .website-title {

@@ -28,6 +28,7 @@ function App() {
   const [booksAmount, setBookAmount] = useState(Number);
 
   const menuItemsStyle = {color: 'gray', textDecoration: 'none', fontFamily: 'Cooper Black'};
+  const [mobileMenuIsVisible, setmobileMenuIsVisible] = useState(false);
 
   const showCart = () => {
     if (cartIsVisible === false) {
@@ -54,6 +55,10 @@ function App() {
     userpic.addEventListener("mouseover", smileOn);
     userpic.addEventListener("mouseout", smileOff);
   }, []);
+
+  useEffect(() => {
+    mobileMenuUpdate();
+  }, [mobileMenuIsVisible]);
 
   const cartUpdate = () => {
     const cart = document.querySelector(".cart");
@@ -127,15 +132,43 @@ function App() {
     }
   };
 
-  // const smileChecking = () => {
-  //   const userpic = document.getElementById("userpic");
-  //   console.log(isSmiling);
-  //   if (isSmiling === true) {
-  //     userpic.setAttribute("src", "./media/ivanov-smile.jpg");
-  //   } else if (isSmiling === false) {
-  //     userpic.setAttribute("src", "./media/ivanov-new.jpg");
-  //   }
-  // };
+  const mobileMenuUpdate = () => {
+    const mobileMenu = document.querySelector(".menu");
+    console.log("mobilemenu is visible === ", mobileMenuIsVisible);
+    if (mobileMenuIsVisible === true) {
+      mobileMenu.setAttribute("style", "display: flex;");
+    } else if (mobileMenuIsVisible === false) {
+      mobileMenu.setAttribute("style", "display: none;");
+    }; 
+    
+    if (mobileMenuIsVisible === false && window.innerWidth > 600) {
+      console.log("fdfsf!!!!");
+      setmobileMenuIsVisible(true);
+    }
+
+    window.addEventListener("resize", () => {
+      if (mobileMenuIsVisible === false && window.innerWidth > 600) {
+        console.log("I did it!!!");
+        setmobileMenuIsVisible(true);
+      };
+      
+      if (mobileMenuIsVisible === true && window.innerWidth < 600) {
+        console.log("fwsdfsdfd2222222!!!");
+        setmobileMenuIsVisible(false);
+      } 
+    });
+  };
+
+  const mobileMenuToggling = () => {
+    const mobileMenuIcon = document.getElementById("mobile-menu-icon");
+    if (mobileMenuIsVisible === false) {
+      mobileMenuIcon.setAttribute("class", "fa-solid fa-xmark");
+      setmobileMenuIsVisible(true);
+    } else if (mobileMenuIsVisible === true) {
+      setmobileMenuIsVisible(false);
+      mobileMenuIcon.setAttribute("class", "fa-solid fa-bars");
+    }
+  };
 
   const smileOn = () => {
     const userpic = document.getElementById("userpic");
@@ -150,7 +183,7 @@ function App() {
   return (
     <>
     <nav className="nav-bar">
-    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+    <i id="mobile-menu-icon" class="fa-solid fa-bars" onClick={(e) => mobileMenuToggling()}></i>
     <a href="/"><img className="website-logo" src="./media/logo.png" alt="Literature club Keys"/></a>
     <p className="website-title">KEYS / КЛЮЧИ </p>
     <ul className="menu">
