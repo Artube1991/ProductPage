@@ -24,7 +24,6 @@ const cartMessagePlural = "Items successfully added!";
 const [cartIsClicked, setCartIsClicked] = useState(false);
 
 useEffect(() => {
-  console.log(book);
   refreshBooksChosen();
   channgingPicture();
   settingCarousel();
@@ -69,23 +68,32 @@ const settingCarousel = () => {
   const leftArrow = document.getElementById("left-arrow");
   const rightArrow = document.getElementById("right-arrow");
 
-  if (pictureCarouselIndex === 0) {
-    leftArrow.setAttribute("style", "visibility: hidden");
-  } else if (pictureCarouselIndex === 3) {
-    rightArrow.setAttribute("style", "visibility: hidden");
-  } else if (0 < pictureCarouselIndex < 4) {
-    leftArrow.setAttribute("style", "visibility: visible");
-    rightArrow.setAttribute("style", "visibility: visible");
-  }
+  leftArrow.setAttribute("style", "visibility: visible;");
+  rightArrow.setAttribute("style", "visibility: visible;");
 
-  const carousel = document.querySelector(".carousel-background");
-  console.log(carouselIsActive);
-  if (carouselIsActive === true) {
-    carousel.setAttribute("style", "display: block");
-    setCartIsVisible(false);
-  } else if (carouselIsActive === false) {
-    carousel.setAttribute("style", "display: none");
+  if (pictureCarouselIndex < 1) {
+    leftArrow.setAttribute("style", "visibility: hidden;");
+  } else if (pictureCarouselIndex > 2) {
+    rightArrow.setAttribute("style", "visibility: hidden;");
   };
+
+  const carouselBackground = document.querySelector(".carousel-background");
+  const carousel = document.querySelector(".carousel");
+  console.log(carouselIsActive);
+
+    if (carouselIsActive === true || window.innerWidth < 600) {
+      carouselBackground.setAttribute("style", "display: block;");
+    } else if (carouselIsActive === false || window.innerWidth > 600) {
+      carouselBackground.setAttribute("style", "display: none;");
+    };
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 600 || carouselIsActive === true) {
+        carouselBackground.setAttribute("style", "display: block;");
+      } else if (window.innerWidth > 600 || carouselIsActive === false) {
+        carouselBackground.setAttribute("style", "display: none;");
+      } 
+    })
 };
 
 const gettingTheIndexOfPictureCarousel = () => {
@@ -154,6 +162,14 @@ const deletingCartMessage = () => {
 
     return(
     <>
+    <div className="carousel-background">
+    <i class="fa-solid fa-xmark cross" onClick={(e) => setCarouselIsActive(false)}></i>
+    <div className="carousel">
+    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarousel("minus")}></i>
+    <img className="picture-carousel" src={picturePathCarousel} style={{opacity: 1}} />
+    <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarousel("plus")}></i>
+    </div>
+    </div>
     <div className="product">
     <section className="product-pictures-box">
     <img className="product-picture" src={picturePath} width="300" height="300" onClick={(e) => gettingTheIndexOfPictureCarousel()}/>
@@ -166,11 +182,13 @@ const deletingCartMessage = () => {
     </section>
     <div className="product-info-box">
         <p className="company-title">KEYS: THE LITERATURE CLUB</p>
-        <h1 className="product-title">'The Knights of Inspiration': True Classics Collected by Yuri Surkov</h1>
-        <p className="product-info">Lorem ipsum para bellum!!!!!!!!! I want to add here some new text about this book.</p>
+        <h1 className="product-title">'The Knights of Inspiration 2: The Ascending' - true classics by Yuri Surkov</h1>
+        <p className="product-info">Lorem ipsum и много другого увлекательного текста про книжки</p>
+        <div className="price-box">
         <p className="current-price">$4.00</p>
         <p className="discount-size">30%</p>
         <p className="old-price">$6.00</p>
+        </div>
         <div className="cart-box">
         <div className="cart-buttons">
         <button className="button-minus" onClick={(e) => changingAmount("minus")}>-</button>
@@ -183,14 +201,6 @@ const deletingCartMessage = () => {
           </button>
         <p className="cart-message">{cartMessage}</p>
         </div>
-    </div>
-    </div>
-    <div className="carousel-background">
-    <i class="fa-solid fa-xmark cross" onClick={(e) => setCarouselIsActive(false)}></i>
-    <div className="carousel">
-    <i class="fa-solid fa-caret-left arrows" id="left-arrow" onClick={(e) => channgingPictureCarousel("minus")}></i>
-    <img className="picture-carousel" src={picturePathCarousel} style={{opacity: 1}} />
-    <i class="fa-solid fa-caret-right arrows" id="right-arrow" onClick={(e) => channgingPictureCarousel("plus")}></i>
     </div>
     </div>
     </>)
