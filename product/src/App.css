@@ -6,7 +6,6 @@
 #root {
   margin: 2% 0% 2% 5%;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 #mobile-menu-icon {
@@ -20,7 +19,7 @@
 
 .website-title {
   margin: 1%;
-  font-family: 'Cooper Black';
+  font-family: "Fruktur", serif;
   font-size: xx-large;
 }
 
@@ -176,6 +175,8 @@
 .product {
   display: flex;
   flex-direction: row;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .product-pictures-box, .product-info-box {
@@ -189,7 +190,7 @@
 
 .company-title {
   color: darkorange;
-  font-family: 'Cooper Black';
+  font-family: "Fruktur", serif;
   font-size: small;
 }
 
@@ -285,7 +286,7 @@
   bottom: 0;
   right: 0;
   min-width: 100%;
-  min-height: 100%;
+  min-height: 39em;
 }
 
 .carousel {
@@ -295,6 +296,7 @@
   align-items: center;
   background-color: gray;
   margin-top: 5%;
+  padding: 3%;
 }
 
 .picture-carousel {

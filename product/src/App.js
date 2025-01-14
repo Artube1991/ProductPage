@@ -27,7 +27,7 @@ function App() {
   const [cartKnightsAmount, setCartKnightsAmount] = useState("");
   const [booksAmount, setBookAmount] = useState(Number);
 
-  const menuItemsStyle = {color: 'gray', textDecoration: 'none', fontFamily: 'Cooper Black'};
+  const menuItemsStyle = {color: 'gray', textDecoration: 'none', fontFamily: "Fruktur, serif"};
   const [mobileMenuIsVisible, setmobileMenuIsVisible] = useState(false);
 
   const showCart = () => {
