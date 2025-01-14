@@ -182,8 +182,8 @@ const deletingCartMessage = () => {
     </section>
     <div className="product-info-box">
         <p className="company-title">KEYS: THE LITERATURE CLUB</p>
-        <h1 className="product-title">'The Knights of Inspiration 2: The Ascending' - true classics by Yuri Surkov</h1>
-        <p className="product-info">Lorem ipsum и много другого увлекательного текста про книжки</p>
+        <h1 className="product-title">'The Knights of Inspiration 2: The Ascension' - true classics by Yuri Surkov</h1>
+        <p className="product-info">A proven classic of our club. The golden composition of the old "Keys": Yuri Surkov, Pavel Sukhorukov, Ekaterina Komina, Vitaliy Fateev, Natalia Khudyakova, and others. More poetry, more traditional forms and themes, more humor, more aphorisms and light nostalgia! This collection of works is decorated with beautiful illustrations by Aleksei Kamenev and Jemma Mheyan.</p>
         <div className="price-box">
         <p className="current-price">$4.00</p>
         <p className="discount-size">30%</p>
