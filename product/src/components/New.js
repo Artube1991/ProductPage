@@ -184,7 +184,7 @@ const deletingCartMessage = () => {
     <div className="product-info-box">
         <p className="company-title">KEYS: THE LITERATURE CLUB</p>
         <h1 className="product-title">'Keys and Castles': Limited Edition 2019</h1>
-        <p className="product-info">Lorem ipsum para bellum!!!!!!!!!</p>
+        <p className="product-info">A collection of the best works for the 10 best years of the club from Igor Sirin, Maria Zotova, Denis Chykaylov, Andrei Shtyrkovski and other authors! A diverse variety of genres from visual poetry and haiku to symbolist short stories and postmodern mini-novels, texts for every taste from fine literature to psychedelia and thrash. The incredible illustrations by Maria Pelikhova will give you additional pleasure. Moreover, there is a bonus illustration in the corrected 2019 reissue!</p>
         <div className="price-box">
         <p className="current-price">$5.75</p>
         <p className="discount-size">50%</p>
